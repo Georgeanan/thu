@@ -1,0 +1,78 @@
+/**
+ * ---------------------------------------
+ * This demo was created using amCharts 5.
+ * 
+ * For more information visit:
+ * https://www.amcharts.com/
+ * 
+ * Documentation is available at:
+ * https://www.amcharts.com/docs/v5/
+ * ---------------------------------------
+ */
+
+// Create root element
+// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+var root = am5.Root.new("chartdiv");
+
+
+// Set themes
+// https://www.amcharts.com/docs/v5/concepts/themes/
+root.setThemes([
+  am5themes_Animated.new(root)
+]);
+
+
+// Create series
+// https://www.amcharts.com/docs/v5/charts/flow-charts/
+var series = root.container.children.push(am5flow.ChordDirected.new(root, {
+  startAngle: 80,
+  padAngle: 1,
+  linkHeadRadius: undefined,
+  sourceIdField: "from",
+  targetIdField: "to",
+  valueField: "value"
+}));
+
+series.nodes.labels.template.setAll({
+  textType: "radial",
+  centerX: 0,
+  fontSize: 9
+});
+
+series.links.template.set("fillStyle", "source");
+
+
+// Set data
+// https://www.amcharts.com/docs/v5/charts/flow-charts/#Setting_data
+series.data.setAll([
+  { "from": "首席执行官", "to": "首席技术官", "value": 4 },
+  { "from": "首席执行官", "to": "中央战略部", "value": 2 },
+  { "from": "首席执行官", "to": "业务单元", "value": 1 },
+{ "from": "首席执行官", "to": "首席技术官", "value": 0.5 },
+  { "from": "首席技术官", "to": "中央创新中心", "value": 6 },  
+  { "from": "首席技术官", "to": "中央战略部", "value": 1 },  
+  { "from": "首席技术官", "to": "业务单元", "value": 2 }, 
+  { "from": "首席技术官", "to": "中央市场部", "value": 1 }, 
+    { "from": "中央创新中心", "to": "中央创新中心", "value": 7 }, 
+    { "from": "中央创新中心", "to": "中央大客户销售部", "value": 0.5 }, 
+      { "from": "中央创新中心", "to": "中央战略部", "value": 0.1 }, 
+      { "from": "中央创新中心", "to": "中央采购部", "value": 1 }, 
+      { "from": "中央创新中心", "to": "中央财务部", "value": 0.1 }, 
+      { "from": "中央创新中心", "to": "中央市场部", "value": 2 }, 
+        { "from": "中央创新中心", "to": "业务单元", "value": 0.5 }, 
+    { "from": "中央创新中心", "to": "业务单元战略部", "value": 2 }, 
+      { "from": "中央创新中心", "to": "业务单元研发部", "value": 0.5 }, 
+      { "from": "中央创新中心", "to": "业务单元销售部", "value": 0.1 }, 
+      { "from": "中央创新中心", "to": "业务单元市场部", "value": 0.5 }, 
+      { "from": "中央战略部", "to": "中央市场部", "value": 3 }, 
+        { "from": "中央战略部", "to": "业务单元战略部", "value": 1 }, 
+      { "from": "业务单元", "to": "业务单元市场部", "value": 2 }, 
+      { "from": "业务单元", "to": "业务单元战略部", "value": 1.5 }, 
+        { "from": "业务单元", "to": "业务单元研发部", "value": 1 }, 
+        { "from": "业务单元", "to": "业务单元销售部", "value": 0.2 }, 
+        { "from": "业务单元", "to": "业务单元市场部", "value": 0.3 }, 
+]);
+
+
+// Make stuff animate on load
+series.appear(1000, 100);
